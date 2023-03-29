@@ -6,7 +6,7 @@ $(".saveBtn").on("click", function () {
   var textArea = $(this).siblings(".description").val();
 
   var timeBlock = $(this).parent().attr("id");
-
+  
   localStorage.setItem(timeBlock, textArea);
 
 });
@@ -23,7 +23,7 @@ $("#hour-16 .description").val(localStorage.getItem("hour-16"));
 $("#hour-17 .description").val(localStorage.getItem("hour-17"));
 
 function checkTime() {
-  var moment = dayjs();
+  var moment = dayjs().hour();
   console.log(moment)
 
   $(".time-block").each(function () {
@@ -35,12 +35,12 @@ function checkTime() {
       $(this).addClass("past");
     } else if (timeCheck === moment) {
       $(this).removeClass("past");
-      $(this).removeClass("future");
       $(this).addClass("present");
+      $(this).removeClass("future");
     } else {
       $(this).removeClass("past");
-      $(this).addClass("future");
       $(this).removeClass("present");
+      $(this).addClass("future");
     }
   });
 }
